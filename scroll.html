@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+     <style>
+         body{
+             background: black;
+             font-family: 'Indie Flower', cursive;
+         }
+         #masai{
+             width: 300px;
+             margin:30px auto;
+             background: blanchedalmond;
+             color:black;
+             text-align:center;
+         }
+         #masai div {
+             margin-top:20px;
+             font-size: 25px;
+             margin-bottom: 20px;
+         }
+     </style>
+<body>
+    <div id="masai">
+
+    </div>
+    <!-- <button onclick="btn()"></button> -->
+    <script>
+         var a = 1;
+        function btn(){
+            const div = document.getElementById('masai');
+           
+            for(let i =a;i<a+25;i++){
+                const cell = document.createElement('div');
+                cell.textContent = `Masai School ${i}`;
+
+                div.append(cell);
+            }
+            a += 25;
+        }
+
+        btn();
+        window.addEventListener('scroll',() =>{
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            const clientHeight = document.documentElement.clientHeight;
+               
+            console.log("dflkmslm")
+            if( scrollTop +  clientHeight >= scrollHeight){
+           btn()
+            }
+        })
+    </script>
+</body>
+</html>
