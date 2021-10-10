@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: black;
+        }
+        #search{
+            width: 200px;
+            height: 30px;
+            margin-left: 40%;
+            margin-top: 30px;
+            border-radius: 30px;
+            border: none;
+        }
+        #searchText{
+            width: 300px;
+            margin: auto;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <input placeholder="search" onkeyup="setdata()" type="text" id="search"/>
+  <div id="searchText"></div>
+    <script>
+        let i =0;
+       const getdata = () => {
+           div(i++)
+       }
+    
+       const searchdata = function(fn,delay) {
+
+        let timer;
+         return function (){
+             let context = this,
+             args = arguments;
+              clearTimeout(timer);
+              timer = setTimeout(() =>{
+                 getdata.apply(context,arguments)     
+             },delay );
+         }
+       }
+
+        async function div(i){
+        const search_text = document.getElementById("searchText");
+        const input = document.getElementById('search').value;
+        
+           
+       try{
+        let res =await fetch(`https://omdbapi.com/?totalResults=5&page=1&s=${input}&apikey=87df08f&t=movie`)
+        let data = await res.json();
+
+        let item = await data.Search;
+
+
+         search_text.innerHTML=null;
+         let i =0;
+         for(let userData of item){
+             i++;
+                const cell = document.createElement('div');
+              cell.textContent = userData.Title;
+              search_text.append(cell);
+              
+         }
+         if( i == 0){
+            const cell = document.createElement('div');
+              cell.textContent = 'No Data is found';
+              search_text.append(cell);
+         }
+       }
+         
+       catch(e){
+              console.log('what is errror')
+       }
+       }
+     
+       var setdata = searchdata(getdata,200);
+    </script>
+</body>
+</html>
